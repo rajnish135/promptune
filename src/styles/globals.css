@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* =====================
+   Promptune Unified Theme: Logo + Button Consistency + Enhanced Typography
+   ===================== */
+
+/* ========== Background & Layout ========== */
 .main {
   width: 100vw;
   min-height: 100vh;
@@ -8,13 +13,14 @@
   justify-content: center;
   padding: 120px 24px 160px 24px;
   pointer-events: none;
+  z-index: -10;
 }
 
 .main:before {
-  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);
+  background: linear-gradient(135deg, #e0f7fa 0%, #ede7f6 100%);
   position: absolute;
   content: "";
-  z-index: 2;
+  z-index: 1;
   width: 100%;
   height: 100%;
   top: 0;
@@ -23,38 +29,28 @@
 .main:after {
   content: "";
   background-image: url("/assets/images/grid.svg");
-  z-index: 1;
+  z-index: 0;
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
-  opacity: 0.4;
-  filter: invert(1);
+  opacity: 0.08;
+  filter: grayscale(1);
 }
 
 .gradient {
-  height: fit-content;
   z-index: 3;
   width: 100%;
   max-width: 640px;
-  background-image: radial-gradient(
-      at 27% 37%,
-      hsla(215, 98%, 61%, 1) 0px,
-      transparent 0%
-    ),
-    radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 1) 0px, transparent 50%),
-    radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 1) 0px, transparent 50%),
-    radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1) 0px, transparent 50%),
-    radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1) 0px, transparent 50%),
-    radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 1) 0px, transparent 50%),
-    radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 50%);
+  background: radial-gradient(circle at 25% 30%, #8f5ef9, transparent 35%),
+              radial-gradient(circle at 85% 20%, #27c9a5, transparent 45%),
+              radial-gradient(circle at 50% 90%, #5ac8fa, transparent 45%);
   position: absolute;
-  content: "";
   width: 100%;
   height: 100%;
-  filter: blur(100px) saturate(150%);
+  filter: blur(80px) saturate(150%);
   top: 80px;
-  opacity: 0.15;
+  opacity: 0.25;
 }
 
 @media screen and (max-width: 640px) {
@@ -63,93 +59,99 @@
   }
 }
 
-/* Tailwind Styles */
-/* Global Layout */
+/* ========== App Container ========== */
 .app {
   @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
 }
 
-/* Buttons */
+/* ========== Buttons (Formal + Polished Style) ========== */
 .black_btn {
-  @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm flex items-center justify-center;
+  @apply rounded-md bg-gradient-to-r from-[#5A67D8] to-[#38B2AC] text-white font-medium shadow-md transition-all py-2.5 px-6 text-sm flex items-center justify-center gap-2 border border-gray-200 cursor-pointer;
+}
+.black_btn:hover {
+  @apply from-[#667EEA] to-[#4FD1C5] shadow-lg;
 }
 
 .outline_btn {
-  @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm flex items-center justify-center;
+  @apply rounded-md border border-[#5A67D8] text-[#5A67D8] font-medium transition-all py-2.5 px-6 text-sm flex items-center justify-center gap-2 hover:bg-[#5A67D8] hover:text-white cursor-pointer;
 }
 
-/* Text & Gradients */
+/* ========== Logo Text (Matching logo colors) ========== */
+.logo_text {
+  @apply text-3xl tracking-tight font-black bg-gradient-to-r from-[#8F5EF9] via-[#5AC8FA] to-[#27C9A5] bg-clip-text text-transparent transition-all duration-300;
+}
+.logo_text:hover {
+  @apply bg-gradient-to-r from-[#27C9A5] via-[#5AC8FA] to-[#8F5EF9];
+}
+
+/* ========== Headings & Typography ========== */
 .head_text {
-  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+  @apply mt-5 text-6xl sm:text-7xl font-black tracking-tight leading-[1.2] bg-gradient-to-br from-[#8F5EF9] via-[#F59E0B] to-[#27C9A5] bg-clip-text text-transparent drop-shadow-lg text-center whitespace-pre-line;
 }
 
 .orange_gradient {
-  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
+  @apply block w-full bg-gradient-to-r from-[#F59E0B] via-[#FB923C] to-[#F43F5E] bg-clip-text text-transparent font-bold;
 }
 
 .green_gradient {
-  @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-[#34D399] to-[#27C9A5] bg-clip-text text-transparent font-semibold;
 }
 
 .blue_gradient {
-  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-[#5AC8FA] to-[#60A5FA] bg-clip-text text-transparent font-semibold;
 }
 
 .desc {
-  @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl;
+  @apply mt-6 text-lg sm:text-xl text-gray-800 max-w-2xl text-center font-medium leading-relaxed break-words w-full;
 }
 
-/* Search */
+/* ========== Search Input ========== */
 .search_input {
-  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
+  @apply block w-full rounded-full border border-gray-300 bg-white py-3 px-6 text-base shadow-md font-medium focus:border-[#5A67D8] focus:ring-2 focus:ring-[#5A67D8] focus:outline-none transition-all;
 }
 
-/* Utility buttons */
+/* ========== Utility Buttons ========== */
 .copy_btn {
-  @apply w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer;
+  @apply w-8 h-8 rounded-full bg-white/30 shadow-md backdrop-blur-md flex justify-center items-center hover:bg-white/40 cursor-pointer transition;
 }
 
 .glassmorphism {
-  @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
+  @apply rounded-xl border border-gray-300 bg-white/30 shadow-xl backdrop-blur-xl p-6;
 }
 
-/* Layouts */
+/* ========== Feed Layout ========== */
 .prompt_layout {
-  @apply space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3;
+  @apply space-y-8 py-8 sm:columns-2 sm:gap-8 xl:columns-3;
 }
 
 .feed {
-  @apply mt-16 mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2;
+  @apply mt-20 mx-auto w-full max-w-3xl flex flex-col items-center gap-6;
 }
 
-/* Form Elements */
+/* ========== Form Inputs ========== */
 .form_textarea {
-  @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
+  @apply w-full flex rounded-xl h-[200px] mt-2 p-4 text-base text-gray-700 outline-none border border-gray-300 focus:border-[#5A67D8];
 }
 
 .form_input {
-  @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0;
+  @apply w-full flex rounded-xl mt-2 p-4 text-base text-gray-700 outline-none border border-gray-300 focus:border-[#5A67D8];
 }
 
-/* Navigation */
-.logo_text {
-  @apply max-sm:hidden font-semibold text-lg text-black tracking-wide;
-}
-
+/* ========== Dropdown Navigation ========== */
 .dropdown {
-  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
+  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-xl bg-white shadow-lg min-w-[210px] flex flex-col gap-3 items-end;
 }
 
 .dropdown_link {
-  @apply text-sm text-gray-700 hover:text-gray-500 font-medium;
+  @apply text-base text-gray-800 hover:text-[#5A67D8] font-medium;
 }
 
-/* Prompt Card */
+/* ========== Prompt Cards ========== */
 .prompt_card {
-  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit;
+  @apply flex-1 break-inside-avoid rounded-xl border border-gray-300 bg-gradient-to-br from-[#f3f4f6] via-[#e0f2fe] to-[#ecfdf5] text-gray-900 shadow-xl p-6 pb-5 transition-all duration-500 hover:scale-[1.01] hover:shadow-2xl hover:bg-gradient-to-br hover:from-[#c7d2fe] hover:via-[#bae6fd] hover:to-[#bbf7d0];
 }
 
-/* Flex helpers */
+/* ========== Flex Helpers ========== */
 .flex-center {
   @apply flex justify-center items-center;
 }

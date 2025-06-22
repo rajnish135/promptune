@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import img from '../../public/assets/images/logo.svg';
+import img from '../../public/assets/images/logo.png';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
@@ -32,18 +32,25 @@ import { FaGithub } from "react-icons/fa";
   }, []);
 
   return (
-    <nav className='flex-between w-full mb-16 pt-3'>
+    <nav className='flex-between w-full mb-16 pt-0'>
 
-      <Link href='/' className='flex gap-2 flex-center'>
-        <Image
-          src={img}
-          alt='logo'
-          width={30}
-          height={30}
-          className='object-contain'
-        />
-        <p className='logo_text'>Promptune</p>
-      </Link>
+<Link href='/' className='flex items-center gap-3 group'>
+  <div className='w-11 h-11 bg-gradient-to-br from-[#7F5AF0] to-[#2CB67D] rounded-xl p-1 shadow-lg transition-transform group-hover:scale-105'>
+    <Image
+      src={img}
+      alt='Promptune Logo'
+      width={56}
+      height={56}
+      className='object-contain'
+    />
+  </div>
+  <p className='text-2xl max-sm:hidden font-extrabold bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D] bg-clip-text text-transparent transition-all duration-300 group-hover:scale-105'>
+    Promptune
+  </p>
+</Link>
+
+
+
 
       {/* Desktop Navigation */}
       <div className='sm:flex hidden'>
@@ -72,15 +79,17 @@ import { FaGithub } from "react-icons/fa";
           <>
            {providers &&
               Object.values(providers).map((provider) => (
-                <button
-                  type='button'
-                  key={provider.name}
-                  onClick={() => signIn(provider.id)}
-                  className='black_btn flex items-center gap-2 mr-1.5'
-                >
-                  {providerIcons[provider.id] ?? null}
-                  Sign in with {provider.name}
-                </button>
+              
+              <button
+                type='button'
+                key={provider.name}
+                onClick={() => signIn(provider.id)}
+                className='black_btn flex items-center gap-2 px-4 py-2 text-sm rounded-md mx-auto mt-2 w-fit'
+              >
+                {providerIcons[provider.id] ?? null}
+                Sign in with {provider.name}
+              </button>
+
               ))
             }
           </>
@@ -150,6 +159,7 @@ import { FaGithub } from "react-icons/fa";
           </>
         )}
       </div>
+
     </nav>
   );
 };

@@ -8,7 +8,6 @@ const Home = () => (
       <br className='max-md:hidden' />
       <span className='orange_gradient text-center'>Ignite Ideas with AI</span>
     </h1>
-
     <p className='desc text-center'>
       Promptune is an open-source platform to explore, create, and share prompts 
       that spark creativity.
