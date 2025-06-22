@@ -32,24 +32,23 @@ import { FaGithub } from "react-icons/fa";
   }, []);
 
   return (
-    <nav className='flex-between w-full mb-16 pt-0'>
+    <nav className='flex-between w-full mb-16'>
 
-<Link href='/' className='flex items-center gap-3 group'>
-  <div className='w-11 h-11 bg-gradient-to-br from-[#7F5AF0] to-[#2CB67D] rounded-xl p-1 shadow-lg transition-transform group-hover:scale-105'>
+<Link href='/' className='flex items-center group'>
+ 
     <Image
       src={img}
       alt='Promptune Logo'
-      width={56}
-      height={56}
-      className='object-contain'
+      width={50}
+      height={50}
+      className='object-contain w-full h-full'
     />
-  </div>
-  <p className='text-2xl max-sm:hidden font-extrabold bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D] bg-clip-text text-transparent transition-all duration-300 group-hover:scale-105'>
+  
+  <p className='text-xl max-sm:hidden font-extrabold mt-[-17px] ml-[-17px] bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D] bg-clip-text text-transparent transition-all duration-300 group-hover:scale-105'>
     Promptune
   </p>
+
 </Link>
-
-
 
 
       {/* Desktop Navigation */}
@@ -84,7 +83,7 @@ import { FaGithub } from "react-icons/fa";
                 type='button'
                 key={provider.name}
                 onClick={() => signIn(provider.id)}
-                className='black_btn flex items-center gap-2 px-4 py-2 text-sm rounded-md mx-auto mt-2 w-fit'
+                className='black_btn flex items-center gap-2 px-4 py-2 text-sm rounded-md mx-auto mt-0 w-fit'
               >
                 {providerIcons[provider.id] ?? null}
                 Sign in with {provider.name}
@@ -152,7 +151,7 @@ import { FaGithub } from "react-icons/fa";
                   className='black_btn flex items-center gap-2'
                 >
                   {providerIcons[provider.id] ?? null}
-                  Sign in with {provider.name}
+                  Sign in {provider.name}
                 </button>
               ))
             }
