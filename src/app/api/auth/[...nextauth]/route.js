@@ -43,6 +43,8 @@ const handler = NextAuth({
 //       try{
 
 //         await connectToDB();
+
+//         console.log("EMAIL",profile.email);
            
 //         // check if user already exists
 //         const userExists = await User.findOne({ email: profile.email });
@@ -85,41 +87,55 @@ const handler = NextAuth({
 //         return false;
 //     }
 
-//     },
+//     }
 
-      async signIn({ profile, account }) {
-  try {
-    if (!profile?.email) return false; // 🚫 no email, reject login
-
+      async signIn({ profile }) {
+     try {
     await connectToDB();
 
+    //Safe check for email presence
+    if (!profile?.email) {
+      console.error("No email found in profile");
+      return false;
+    }
+
+    console.log("EMAIL:", profile.email);
+
+    //Check if user already exists
     const userExists = await User.findOne({ email: profile.email });
+    
+    if (userExists) 
+    return true;
 
-    if (userExists) return true;
-
+    //Generate username safely
     let baseUsername = (profile.name || profile.login || "user")
       .replace(/\s+/g, '')
       .replace(/[^a-zA-Z0-9._]/g, '')
       .toLowerCase();
 
-    if (!/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(baseUsername)) {
+    //Fallback if username is invalid or short
+    if (
+      !/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(baseUsername)
+    ) {
       baseUsername = baseUsername.slice(0, 12) + Math.floor(1000 + Math.random() * 9000);
     }
 
+    //Create new user in DB
     await User.create({
       email: profile.email,
       username: baseUsername,
-      image: profile.picture || profile.avatar_url || '', // 🛡️ fallback
+      image: profile.picture || profile.avatar_url || '',
     });
 
     return true;
   } 
   catch (err) {
-    console.error('SignIn Error:', err.message);
-    return false; // triggers Access Denied
+    console.error("SignIn Error:", err.message);
+    return false;
   }
-  
 }
+
+
 
   },
 

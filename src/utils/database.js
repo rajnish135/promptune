@@ -13,8 +13,7 @@ export const connectToDB = async () => {
 
   try {
     
- await mongoose.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}` +
-  `@cluster0.cfxb1se.mongodb.net/promptDB?retryWrites=true&w=majority&appName=Cluster0`);
+ await mongoose.connect(process.env.MONGODB_URL);
 
     isConnected = true;
 
